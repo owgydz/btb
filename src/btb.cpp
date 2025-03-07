@@ -2,8 +2,8 @@
 #include <string>
 #include <cstdlib>
 #include "cli.h"
-#include "../btbh/interpreter.h"
-#include "../btbh/dependency.h"
+#include "../btbh/inter.h"
+#include "../btbh/depend.h"
 #include "../btbh/runner.h"
 
 int main(int argc, char* argv[]) {
