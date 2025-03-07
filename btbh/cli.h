@@ -1,6 +1,8 @@
 #ifndef BTB_CLI_H
 #define BTB_CLI_H
 
+#include <string>
+
 namespace BTB {
 namespace CLI {
 
