@@ -8,6 +8,10 @@ namespace CLI {
 
 void showHelp();
 void showCommandHelp(const std::string& command);
+void build();
+void status();
+void clean();
+void version();
 
 } // namespace CLI
 } // namespace BTB
