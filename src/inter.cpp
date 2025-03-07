@@ -1,4 +1,4 @@
-#include "interpreter.h"
+#include "../btbh/inter.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>

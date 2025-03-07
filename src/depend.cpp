@@ -1,4 +1,4 @@
-#include "dependency.h"
+#include "../btbh/depend.h"
 #include <iostream>
 #include <sys/stat.h>
 
