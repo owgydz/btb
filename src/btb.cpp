@@ -15,11 +15,13 @@ int main(int argc, char* argv[]) {
     std::string command = argv[1];
 
     if (command == "build") {
-        // Parse and build the project
-        std::cout << "Starting build process..." << std::endl;
+        // Parse and build the project.
+        // This assumes that the build.berg file is present in the current directory after building via Berg.
+        // If not, we can fallback to an error message.
+        std::cout << "Starting build process. Please wait." << std::endl;
         BTB::Interpreter interpreter;
         if (!interpreter.parseFile("build.berg")) {
-            std::cerr << "Error: Failed to parse build.berg." << std::endl;
+            std::cerr << "Error: Failed to parse build.berg. Is it in the directory?" << std::endl;
             return 1;
         }
 

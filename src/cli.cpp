@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "../btbh/runner.h"   
 #include "../btbh/depend.h"
+#include "../btbh/parser.h"  // Assuming a parser is available to parse the build.berg file
 
 namespace BTB {
 namespace CLI {
@@ -41,8 +42,10 @@ void showCommandHelp(const std::string& command) {
 
 void build() {
     std::cout << "Building the project...\n";
+    
+    // Create a Runner instance and execute the build
     Runner runner;
-    if (runner.executeBuild()) {
+    if (runner.runBuildCommand("build")) {  // Assuming the build command is available as a string
         std::cout << "Build completed successfully.\n";
     } else {
         std::cerr << "Build failed.\n";
@@ -52,9 +55,19 @@ void build() {
 void status() {
     std::cout << "Checking build status...\n";
 
+    // Parse the build.berg file to get sources and target
+    BergParser parser;
+    if (!parser.parseFile("build.berg")) {
+        std::cerr << "Error: Could not read build.berg" << std::endl;
+        return;
+    }
+
+    std::string target = parser.getValue("target");
+    std::vector<std::string> sources = parser.getSources();
+
     // Integrate with DependencyManager to check if the project is up-to-date
     DependencyManager depManager;
-    if (depManager.isBuildUpToDate()) {
+    if (depManager.isBuildUpToDate(sources, target)) {
         std::cout << "Build is up-to-date.\n";
     } else {
         std::cout << "Build is outdated, needs updating.\n";
@@ -64,7 +77,7 @@ void status() {
 void clean() {
     std::cout << "Cleaning build artifacts...\n";
 
-    // Trigger the clean process
+    // Trigger the clean process via Runner
     Runner runner;
     if (runner.cleanBuildArtifacts()) {
         std::cout << "Build artifacts cleaned successfully.\n";
