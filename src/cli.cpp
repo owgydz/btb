@@ -15,6 +15,7 @@ void showHelp() {
               << "  help     - Show this help message\n"
               << "  status   - Check status of build\n"
               << "  clean    - Clean build artifacts\n"
+              << "  visualize - Generate dependency graph\n"
               << "  version  - Show version\n"
               << "Use 'btb <command> help' for more details on each command.\n";
 }

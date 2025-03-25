@@ -21,6 +21,10 @@ int main(int argc, char* argv[]) {
         BTB::CLI::visualizeDependencies();
     } else if (command == "help") {
         BTB::CLI::showHelp();
+    } else if (command == "version") {
+        BTB::CLI::version();
+    } else if (command == "status") {
+        BTB::CLI::status();
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
         return 1;
