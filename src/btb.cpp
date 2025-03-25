@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include "cli.h"
+#include "../btbh/cli.h"
 #include "../btbh/inter.h"
 #include "../btbh/depend.h"
 #include "../btbh/runner.h"
