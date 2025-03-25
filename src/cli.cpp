@@ -52,6 +52,29 @@ void build() {
     }
 }
 
+void buildWithConfig(const std::string& config) {
+    std::cout << "Building the project with configuration: " << config << "\n";
+
+    Runner runner;
+    std::string command = "build --config " + config;
+    if (runner.runBuildCommand(command)) {
+        std::cout << "Build completed successfully.\n";
+    } else {
+        std::cerr << "Build failed.\n";
+    }
+}
+
+void visualizeDependencies() {
+    std::cout << "Generating dependency graph...\n";
+
+    DependencyManager depManager;
+    if (depManager.generateDependencyGraph("dependencies.dot")) {
+        std::cout << "Dependency graph generated: dependencies.dot\n";
+    } else {
+        std::cerr << "Failed to generate dependency graph.\n";
+    }
+}
+
 void status() {
     std::cout << "Checking build status...\n";
 

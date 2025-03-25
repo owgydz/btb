@@ -1,6 +1,7 @@
 #include "../btbh/depend.h"
 #include <iostream>
 #include <sys/stat.h>
+#include <fstream>
 
 namespace BTB {
 
@@ -54,6 +55,23 @@ bool DependencyManager::isBuildUpToDate(const std::vector<std::string>& sources,
     }
 
     return true;  // No sources are newer, so the build is up to date
+}
+
+bool DependencyManager::generateDependencyGraph(const std::string& outputFile) {
+    std::ofstream file(outputFile);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open file " << outputFile << std::endl;
+        return false;
+    }
+
+    file << "digraph Dependencies {\n";
+    for (const auto& source : sources) {
+        file << "  \"" << source << "\" -> \"" << target << "\";\n";
+    }
+    file << "}\n";
+
+    file.close();
+    return true;
 }
 
 } // namespace BTB

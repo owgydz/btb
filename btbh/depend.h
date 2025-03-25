@@ -12,6 +12,7 @@ public:
     bool resolveDependencies(const std::vector<std::string>& sources);
     bool needsRebuild(const std::vector<std::string>& sources, const std::string& target);
     bool isBuildUpToDate(const std::vector<std::string>& sources, const std::string& target);
+    bool generateDependencyGraph(const std::string& outputFile);
 private:
     time_t getFileModificationTime(const std::string& filePath);
 };

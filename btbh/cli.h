@@ -12,6 +12,8 @@ void build();
 void status();
 void clean();
 void version();
+void buildWithConfig(const std::string& config);
+void visualizeDependencies();
 
 } // namespace CLI
 } // namespace BTB

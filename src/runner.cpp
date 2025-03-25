@@ -36,4 +36,13 @@ bool Runner::executeBuild(const std::string& command, const std::string& target)
     }
 }
 
+bool Runner::skipUnchangedBuildSteps(const std::vector<std::string>& sources, const std::string& target) {
+    DependencyManager depManager;
+    if (depManager.isBuildUpToDate(sources, target)) {
+        std::cout << "Skipping build: Target is up-to-date.\n";
+        return true;
+    }
+    return false;
+}
+
 } // namespace BTB

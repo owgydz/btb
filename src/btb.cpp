@@ -15,29 +15,10 @@ int main(int argc, char* argv[]) {
     std::string command = argv[1];
 
     if (command == "build") {
-        // Parse and build the project.
-        // This assumes that the build.berg file is present in the current directory after building via Berg.
-        // If not, we can fallback to an error message.
-        std::cout << "Starting build process. Please wait." << std::endl;
-        BTB::Interpreter interpreter;
-        if (!interpreter.parseFile("build.berg")) {
-            std::cerr << "Error: Failed to parse build.berg. Is it in the directory?" << std::endl;
-            return 1;
-        }
-
-        BTB::DependencyManager dependencyManager;
-        if (!dependencyManager.resolveDependencies(interpreter.getSources())) {
-            std::cerr << "Error: Dependency resolution failed." << std::endl;
-            return 1;
-        }
-
-        BTB::Runner runner;
-        if (!runner.runBuildCommand(interpreter.getBuildCommand())) {
-            std::cerr << "Error: Build failed." << std::endl;
-            return 1;
-        }
-
-        std::cout << "Build completed successfully." << std::endl;
+        std::string config = (argc > 2) ? argv[2] : "default";
+        BTB::CLI::buildWithConfig(config);
+    } else if (command == "visualize") {
+        BTB::CLI::visualizeDependencies();
     } else if (command == "help") {
         BTB::CLI::showHelp();
     } else {

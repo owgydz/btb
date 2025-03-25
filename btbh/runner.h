@@ -26,6 +26,9 @@ public:
     // Executes the build process, including command execution and logging.
     bool executeBuild(const std::string& command, const std::string& target);
 
+    // Skips unnecessary build steps for incremental builds.
+    bool skipUnchangedBuildSteps(const std::vector<std::string>& sources, const std::string& target);
+
 private:
     std::vector<std::string> buildLogs;
 };
