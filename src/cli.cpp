@@ -77,13 +77,8 @@ void visualizeDependencies() {
     std::string target = parser.getValue("target");
 
     DependencyManager depManager;
-<<<<<<< HEAD
     if (depManager.generateDependencyGraph("dependencies.dot", sources, target)) {
         std::cout << "Dependency graph generated: dependencies.dot\n";
-=======
-    if (depManager.generateDependencyGraph("dependencies.dot")) {
-        std::cout << "Dependency graph generated at dependencies.dot\n";
->>>>>>> 455a51858f7eaf573cf3cc9aef8c3d0e9c34aa1b
     } else {
         std::cerr << "Failed to generate dependency graph.\n";
     }
@@ -124,7 +119,7 @@ void clean() {
 }
 
 void version() {
-    std::cout << "Build the Berg (BTB) version 0.7.131.7\n";
+    std::cout << "Build the Berg (BTB) version 0.7.131.11\n";
     std::cout << "Part of the Berg project.\n";
     std::cout << "Meta-build system for .berg Berg files\n";
     std::cout << "This project was led by Owen Gaydosz and the Bluegill Studios Berg team.\n";

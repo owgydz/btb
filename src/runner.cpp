@@ -1,7 +1,8 @@
 #include "../btbh/runner.h"
-#include "../btbh/depend.h" // Include DependencyManager
+#include "../btbh/depend.h" 
 #include <iostream>
 #include <cstdlib>
+#include <filesystem>
 
 namespace BTB {
 
@@ -44,6 +45,28 @@ bool Runner::skipUnchangedBuildSteps(const std::vector<std::string>& sources, co
         return true;
     }
     return false;
+}
+
+bool Runner::cleanBuildArtifacts() {
+    try {
+        std::filesystem::remove_all("build"); // Assuming "build" is the directory for build artifacts
+        logBuildStep("Build artifacts cleaned successfully.");
+        return true;
+    } catch (const std::filesystem::filesystem_error& e) {
+        std::cerr << "Error cleaning build artifacts: " << e.what() << std::endl;
+        return false;
+    }
+}
+
+bool Runner::preBuildChecks(const std::vector<std::string>& sources) {
+    for (const auto& source : sources) {
+        if (!std::filesystem::exists(source)) {
+            std::cerr << "Pre-build check failed: Missing source file " << source << std::endl;
+            return false;
+        }
+    }
+    logBuildStep("Pre-build checks passed.");
+    return true;
 }
 
 } // namespace BTB
