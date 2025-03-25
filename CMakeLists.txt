@@ -1,4 +1,5 @@
 # CMakeLists.txt for unittests
+# DO NOT TREAT THIS AS THE MAIN PROJECT CMAKE!!!!
 find_package(GTest REQUIRED)
 
 
