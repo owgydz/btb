@@ -57,7 +57,7 @@ bool DependencyManager::isBuildUpToDate(const std::vector<std::string>& sources,
     return true;  // No sources are newer, so the build is up to date
 }
 
-bool DependencyManager::generateDependencyGraph(const std::string& outputFile) {
+bool DependencyManager::generateDependencyGraph(const std::string& outputFile, const std::vector<std::string>& sources, const std::string& target) {
     std::ofstream file(outputFile);
     if (!file.is_open()) {
         std::cerr << "Error: Could not open file " << outputFile << std::endl;

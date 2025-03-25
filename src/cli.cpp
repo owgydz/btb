@@ -67,8 +67,17 @@ void buildWithConfig(const std::string& config) {
 void visualizeDependencies() {
     std::cout << "Generating dependency graph...\n";
 
+    BergParser parser;
+    if (!parser.parseFile("build.berg")) {
+        std::cerr << "Error: Could not read build.berg" << std::endl;
+        return;
+    }
+
+    std::vector<std::string> sources = parser.getSources();
+    std::string target = parser.getValue("target");
+
     DependencyManager depManager;
-    if (depManager.generateDependencyGraph("dependencies.dot")) {
+    if (depManager.generateDependencyGraph("dependencies.dot", sources, target)) {
         std::cout << "Dependency graph generated: dependencies.dot\n";
     } else {
         std::cerr << "Failed to generate dependency graph.\n";

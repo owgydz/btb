@@ -1,4 +1,5 @@
 #include "../btbh/runner.h"
+#include "../btbh/depend.h" // Include DependencyManager
 #include <iostream>
 #include <cstdlib>
 
