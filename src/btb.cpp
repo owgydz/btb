@@ -25,6 +25,8 @@ int main(int argc, char* argv[]) {
         BTB::CLI::version();
     } else if (command == "status") {
         BTB::CLI::status();
+    } else if (command == "clean") {
+        BTB::CLI::clean();
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
         return 1;
